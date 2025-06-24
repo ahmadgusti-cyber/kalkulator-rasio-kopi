@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kalkulator Rasio Kopi</title>
+  <style>
+    body { font-family: sans-serif; padding: 2em; background: #f9f9f9; color: #333; }
+    h1 { color: #6b3e26; text-align: center; }
+    label, select, input { margin: 1em 0; display: block; width: 100%; max-width: 300px; }
+    button { background: #6b3e26; color: white; padding: 10px; border: none; border-radius: 6px; width: 100%; max-width: 300px; }
+    .result { margin-top: 2em; font-size: 1.2em; text-align: center; color: #444; }
+  </style>
+</head>
+<body>
+  <h1>Kalkulator Rasio Kopi ☕</h1>
+
+  <label for="method">Pilih metode seduh:</label>
+  <select id="method">
+    <option value="16">V60 (1:16)</option>
+    <option value="13">French Press (1:13)</option>
+    <option value="2">Espresso (1:2)</option>
+    <option value="12">Tubruk (1:12)</option>
+    <option value="14">AeroPress (1:14)</option>
+    <option value="6">Cold Brew (1:6)</option>
+    <option value="12">Vietnam Drip (1:12)</option>
+    <option value="5">Kopi Susu Manual (1:5)</option>
+  </select>
+
+  <label for="coffee">Masukkan gram kopi:</label>
+  <input type="number" id="coffee" placeholder="Contoh: 15" />
+
+  <button onclick="hitung()">Hitung Air</button>
+
+  <div class="result" id="hasil"></div>
+
+  <script>
+    function hitung() {
+      const rasio = parseFloat(document.getElementById("method").value);
+      const kopi = parseFloat(document.getElementById("coffee").value);
+      if (isNaN(kopi) || kopi <= 0) {
+        document.getElementById("hasil").innerText = "Masukkan jumlah gram kopi yang valid.";
+        return;
+      }
+      const hasil = kopi * rasio;
+      document.getElementById("hasil").innerText =
+        `Butuh sekitar ${hasil.toFixed(1)} ml air untuk ${kopi} g kopi (rasio 1:${rasio}).`;
+    }
+  </script>
+</body>
+</html>
