@@ -1,0 +1,16 @@
+{
+  "name": "Kalkulator Kopi Pro",
+  "short_name": "KopiPro",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#111111",
+  "theme_color": "#111111",
+  "description": "Aplikasi kalkulator rasio kopi digital dengan timer & fitur lengkap",
+  "icons": [
+    {
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/A_small_cup_of_coffee.JPG/192px-A_small_cup_of_coffee.JPG",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
