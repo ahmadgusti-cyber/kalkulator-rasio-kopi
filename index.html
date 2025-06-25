@@ -1,26 +1,53 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kalkulator Rasio Kopi</title>
+  <meta name="theme-color" content="#222">
   <style>
-    body { font-family: sans-serif; padding: 2em; background: #f9f9f9; color: #333; }
-    h1 { color: #6b3e26; text-align: center; }
-    label, select, input { margin: 1em 0; display: block; width: 100%; max-width: 300px; }
-    button { background: #6b3e26; color: white; padding: 10px; border: none; border-radius: 6px; width: 100%; max-width: 300px; }
-    .result { margin-top: 2em; font-size: 1.2em; text-align: center; color: #444; }
+    body {
+      font-family: sans-serif;
+      background-color: #111;
+      color: #fff;
+      padding: 2em;
+      max-width: 480px;
+      margin: auto;
+    }
+    select, input, button {
+      width: 100%;
+      padding: 10px;
+      margin: 1em 0;
+      font-size: 1em;
+    }
+    .result {
+      font-size: 1.2em;
+      margin-top: 1em;
+    }
+    .toggle-theme {
+      margin-bottom: 1em;
+      background: #444;
+      color: #fff;
+    }
+    .light-mode {
+      background-color: #fff;
+      color: #000;
+    }
+    .light-mode .toggle-theme {
+      background: #ddd;
+      color: #000;
+    }
   </style>
 </head>
 <body>
+  <button onclick="toggleTheme()" class="toggle-theme">🌗 Ganti Tema</button>
+
   <h1>Kalkulator Rasio Kopi ☕</h1>
 
-  <label for="method">Pilih metode seduh:</label>
-  <select id="method">
+  <label for="rasio">Pilih metode seduh:</label>
+  <select id="rasio">
     <option value="16">V60 (1:16)</option>
     <option value="13">French Press (1:13)</option>
-    <option value="2">Espresso (1:2)</option>
-    <option value="12">Tubruk (1:12)</option>
     <option value="14">AeroPress (1:14)</option>
     <option value="6">Cold Brew (1:6)</option>
     <option value="12">Vietnam Drip (1:12)</option>
@@ -31,20 +58,29 @@
   <input type="number" id="coffee" placeholder="Contoh: 15" />
 
   <button onclick="hitung()">Hitung Air</button>
+  <button onclick="reset()" style="background:#900; color:#fff;">Reset</button>
 
   <div class="result" id="hasil"></div>
 
   <script>
     function hitung() {
-      const rasio = parseFloat(document.getElementById("method").value);
+      const rasio = parseFloat(document.getElementById("rasio").value);
       const kopi = parseFloat(document.getElementById("coffee").value);
       if (isNaN(kopi) || kopi <= 0) {
-        document.getElementById("hasil").innerText = "Masukkan jumlah gram kopi yang valid.";
+        document.getElementById("hasil").innerText = "Masukkan jumlah kopi yang valid!";
         return;
       }
       const hasil = kopi * rasio;
-      document.getElementById("hasil").innerText =
-        `Butuh sekitar ${hasil.toFixed(1)} ml air untuk ${kopi} g kopi (rasio 1:${rasio}).`;
+      document.getElementById("hasil").innerText = `Butuh sekitar ${hasil.toFixed(1)} ml air.`;
+    }
+
+    function reset() {
+      document.getElementById("coffee").value = "";
+      document.getElementById("hasil").innerText = "";
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle("light-mode");
     }
   </script>
 </body>
